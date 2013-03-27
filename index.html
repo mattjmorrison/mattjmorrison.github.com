@@ -1,9 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Hello Github</title>
-</head>
-<body>
-  <div>Hello Github</div>
-</body>
-</html>
+---
+layout: default
+---
+
+<ul>
+{% for post in paginator.posts %}
+<li>
+  <span class="post__time">{{ post.date | date: "%d %B, %Y" }}</span>
+  <h2 class="post__title">
+    <a href="{{ post.url }}">{{ post.title }}</a>
+  </h2>
+</li>
+{% endfor %}
+</ul>
+
+<ol class="nav  pagination">
+  <li class="pagination__prev">
+    {% if paginator.previous_page %}
+      {% if paginator.previous_page == 1 %}
+        <a href="/">Previous</a>
+      {% else %}
+        <a href="/page{{paginator.previous_page}}">Previous</a>
+      {% endif %}
+    {% else %}
+      Previous
+    {% endif %}
+  </li>
+    
+  <li class="pagination__next">
+    {% if paginator.next_page %}
+      <a href="/page{{paginator.next_page}}">Next</a>
+    {% else %}
+      Next
+    {% endif %}
+  </li>
+</ol>
